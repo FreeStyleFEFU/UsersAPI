@@ -72,6 +72,7 @@ def childrens(id, key_list, name_key, user_list):
     users=[]
     offset=0
     while offset < size:
+
         response = requests.get(f"https://api.vk.com/method/users.getFollowers?access_token=3c10b57e3c10b57e3c10b57ef33c645bb533c103c10b57e63a01af78fd985745dfee641&v=5.126&user_id={id}&count=1000&offset={offset}&fields=city")
         data = response.json()['response']['items']
         offset+=1000
