@@ -33,17 +33,7 @@ def gui():
 def parent(id, key_list, name_key, user_list):
     requestStringUser = f"https://api.vk.com/method/users.get?access_token=3c10b57e3c10b57e3c10b57ef33c645bb533c103c10b57e63a01af78fd985745dfee641&v=5.126&user_ids={id}&fields=city"
     response = requests.get(requestStringUser)
-    try:
-        response.json()['response']
-    except:
-        print(response.json()['error']['error_msg'])
-        gui()
-        return
-    if len(response.json()['response']) < 1:
-        print("Ошибка запроса")
-        gui()
-        return
-
+    errors(response)
     
     user = response.json()['response']
     index = response.json()['response'][0]['id']

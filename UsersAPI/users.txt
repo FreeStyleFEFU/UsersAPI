@@ -56,7 +56,7 @@
 56 id - 580317089; имя - Milena; фамилия - Simonova; город - Неизвестен; 
 57 id - 534558041; имя - Alex; фамилия - Home; город - Moscow; 
 58 id - 578944831; имя - Karina; фамилия - Gradova; город - Неизвестен; 
-59 id - 234665133; имя - Yulya; фамилия - Orlinskaya; город - Неизвестен; 
+59 id - 234665133; имя - Yulya; фамилия - Orlinskaya; город - Vladivostok; 
 60 id - 543738403; имя - Helena; фамилия - Miller; город - Saint Petersburg; 
 61 id - 484196590; имя - Makhmed; фамилия - Baranorez; город - Неизвестен; 
 62 id - 451485175; имя - Ekaterina; фамилия - Durova; город - Неизвестен; 
