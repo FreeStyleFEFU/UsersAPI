@@ -17,8 +17,6 @@ def gui():
         return
     id = parent(id, key_list, name_key, user_list)
     childrens(key_list, name_key, user_list, countNames)
-    countNames+=1
-    childrens(key_list, name_key, user_list, countNames)
         
 
 def parent(id, key_list, name_key, user_list):
@@ -99,8 +97,29 @@ def childrens(key_list, name_key, user_list, countNames):
                                 user_list.append(str(users[user][key_list[key]]) + " ; ")
                             except:
                                 user_list.append("Неизвестен ; ")
+
+                    id = users[user]['id']            
+                    requestFriendsOfFriends = f"https://api.vk.com/method/friends.get?access_token=3c10b57e3c10b57e3c10b57ef33c645bb533c103c10b57e63a01af78fd985745dfee641&v=5.126&user_id={id}"
+                    responseFriends = requests.get(requestFriendsOfFriends)
+                    if errors(responseFriends) == True:
+                        user_list.append("Private ; ")
+                        continue
+
+                    size = responseFriends.json()['response']['count']
+                    friends=[]
+                    offset=0
+                    while offset < size:
+                        responseFriends = requests.get(f"https://api.vk.com/method/friends.get?access_token=3c10b57e3c10b57e3c10b57ef33c645bb533c103c10b57e63a01af78fd985745dfee641&v=5.126&user_id={id}&count=1000&offset={offset}&fields=city")
+                        data = responseFriends.json()['response']['items']
+                        offset+=1000
+                        print(offset)
+                        friends.extend(data)
+                        time.sleep(0.1)
+
+                    for friend in friends:
+                        user_list.append(f"{friend['id']} ; ")
                     user_line = ''.join(user_list)
-                    fileWrite.writelines(f"{user_line}\n")
+                    fileWrite.writelines(f"{user_line}\n\n")
 
 def errors(response):
     if response.status_code != 200:
